@@ -1,0 +1,103 @@
+App.css * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  background: #008bf6;
+  color: white;
+  min-height: 100vh;
+  padding-left: 20px;
+}
+a {
+  text-decoration: none;
+}
+
+.sidehead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
+}
+.search {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  height: 30px;
+  padding: 10px;
+}
+
+.search input {
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 10px 5px;
+}
+
+.link {
+  display: flex;
+  gap: 10px;
+  color: white;
+  padding: 10px 10px;
+  border-right: 4px solid transparent;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.link:hover {
+  border-right: 4px solid white;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  background: rgb(255, 255, 255);
+  color: black;
+}
+.search-icon {
+  font-weight: bold;
+}
+.route_text {
+  white-space: nowrap;
+  font-size: 15px;
+}
+.main-container {
+  display: flex;
+}
+
+main {
+  padding: 20px;
+  width: 100%;
+}
+.active {
+  border-right: 4px solid white;
+  background: rgb(255, 255, 255);
+  color: black;
+}
+
+.logo {
+  font-size: 2.2rem;
+}
+
+.addcolor {
+  background: rgb(255, 255, 255);
+  color: black;
+}
+.addcolor:hover {
+  background: rgb(255, 255, 255);
+  color: black;
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  color: white;
+  padding: 10px 10px;
+  border-right: 4px solid transparent;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.menu_items {
+  display: flex;
+  gap: 10px;
+}
+.menu_container .link {
+  padding-left: 20px;
+  border-bottom: white 0.5px solid;
+}
