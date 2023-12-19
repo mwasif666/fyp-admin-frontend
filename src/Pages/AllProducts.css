@@ -1,0 +1,19 @@
+.btn-danger {
+  background-color: #cf2b3b !important;
+  border: none;
+}
+.btn-primary {
+  background-color: #0b5ed7;
+  border: none;
+}
+.btn-success {
+  background-color: #157347;
+  border: none;
+}
+.btn-secondary {
+  background-color: rgb(85, 85, 85);
+  border: none;
+}
+.modals-input input {
+  outline: auto gainsboro;
+}

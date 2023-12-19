@@ -14,6 +14,7 @@ import DeleteProduct from "./Pages/DeleteProduct";
 import Login from "./Pages/Login";
 import CreateUser from "./Pages/CreateUser";
 import Orders from "./Pages/Orders";
+import AllProducts from "./Pages/AllProducts";
 
 function App({ login }) {
   const [cart, setCart] = useState({});
@@ -210,6 +211,11 @@ function App({ login }) {
                   exact
                   path="/product/addproduct"
                   element={<AddProduct />}
+                />
+                <Route
+                  exact
+                  path="/product/allproducts"
+                  element={<AllProducts />}
                 />
                 <Route
                   exact

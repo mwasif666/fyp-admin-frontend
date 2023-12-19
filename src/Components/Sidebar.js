@@ -30,6 +30,11 @@ const routes = [
     icon: <FaProductHunt />,
     subRoutes: [
       {
+        path: "/product/allproducts",
+        name: "All Products",
+        icon: <CiViewList />,
+      },
+      {
         path: "/product/getproduct",
         name: "View Product",
         icon: <CiViewList />,
