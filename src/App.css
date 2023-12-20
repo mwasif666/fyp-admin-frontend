@@ -212,3 +212,6 @@ text {
 .table > :not(caption) > * > * {
   padding-left: 20px !important;
 }
+.login-screen {
+  background-color: #29221d !important;
+}

@@ -6,10 +6,12 @@ import Navbar_Dashboard from "./DashboardComponents/navbar_dasboard";
 import AllProductDetails from "./AllProductsDetails";
 import ChartCountry from "../Pages/DashboardComponents/Chart";
 import LineChart from "./DashboardComponents/LineChart";
+import Login from "./Login";
 
 const Dashboard = () => {
   return (
     <>
+      <Login />
       <Navbar_Dashboard />
       <Badge />
       {/* <BoxCharting /> */}
