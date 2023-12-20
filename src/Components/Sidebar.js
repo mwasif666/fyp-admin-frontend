@@ -13,6 +13,7 @@ import { FaBars, FaUserAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import SidebarMenu from "./SidebarMenu";
+import Logo from "../assests/images/logo/logo.png";
 const routes = [
   {
     path: "/",
@@ -21,7 +22,7 @@ const routes = [
   },
   {
     path: "/createinvoice",
-    name: "Generate Sales",
+    name: "Order Details",
     icon: <FaFileInvoice />,
   },
   {
@@ -63,7 +64,7 @@ const routes = [
   },
 ];
 const Sidebar = ({ children }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const toggle = () => {
     setOpen(!open);
   };
@@ -106,35 +107,16 @@ const Sidebar = ({ children }) => {
     <div className="main-container">
       <motion.div
         animate={{
-          width: open ? "350px" : "80px",
-          transition: {
-            duration: 0.5,
-            type: "spring",
-            damping: 11,
-          },
+          width: open ? "300px" : "0px",
         }}
         className={`sidebar`}
       >
         <div className="sidehead">
-          <AnimatePresence>
-            {open && (
-              <motion.h1
-                variants={showAnimation}
-                initial="hidden"
-                animate="show"
-                exit="hidden"
-                className="logo"
-              >
-                <img
-                  src="https://demo74.leotheme.com/prestashop/vt_drink/images/logo.jpg"
-                  alt=""
-                />
-              </motion.h1>
-            )}
-          </AnimatePresence>
-          <div className="bar cursor-pointer">
+          <img src={Logo} alt="" />
+
+          {/* <div className="bar cursor-pointer">
             <FaBars onClick={toggle} />
-          </div>
+          </div> */}
         </div>
 
         <section className="routes">
@@ -158,20 +140,18 @@ const Sidebar = ({ children }) => {
                 key={route.name}
                 className="link"
               >
-                <div className="icon m-1">{route.icon}</div>
-                <AnimatePresence>
-                  {open && (
-                    <motion.div
-                      variants={showAnimation}
-                      initial="hidden"
-                      animate="show"
-                      exit="hidden"
-                      className="route_text"
-                    >
-                      {route.name}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div className="icon">{route.icon}</div>
+                {open && (
+                  <div
+                    variants={showAnimation}
+                    initial="hidden"
+                    animate="show"
+                    exit="hidden"
+                    className="route_text"
+                  >
+                    {route.name}
+                  </div>
+                )}
               </NavLink>
             );
           })}

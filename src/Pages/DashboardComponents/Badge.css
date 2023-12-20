@@ -2,7 +2,7 @@
 
 .content-Badge {
   display: flex !important;
-  padding: 10px 20px;
+  padding: 20px 10px;
 }
 
 .content-Badge .title {
@@ -65,4 +65,22 @@
 
 .content-Badge .caption {
   margin-left: 8px; /* Assuming theme.spacing.unit is equivalent to 8 */
+}
+svg#SvgjsSvg1614 {
+  margin-top: 30px;
+}
+.countrychart div {
+  background: transparent !important;
+}
+.countrychart div svg {
+  width: 100% !important;
+  outline: none;
+}
+.countrychart g path {
+  fill: rgb(254, 108, 0);
+  fill-opacity: 1 !important;
+  stroke: black;
+  stroke-width: 1;
+  stroke-opacity: 1 !important;
+  cursor: pointer;
 }

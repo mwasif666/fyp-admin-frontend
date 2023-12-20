@@ -2,16 +2,17 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { Col, Row } from "react-bootstrap";
 import BarChart from "./BarChart";
+import "./Badge.css";
 
 export default function OcorrenciaDonut() {
   return (
     <div>
       <Row className="pt-5">
-        <Col md="6">
+        <Col md="7" className="countrychart">
           <BarChart />
         </Col>
-        <Col md="6">
-          <div style={{ width: "95%", margin: "0 auto" }}>
+        <Col md="5">
+          <div style={{ width: "100%" }}>
             <GraficoDonut />
           </div>
         </Col>

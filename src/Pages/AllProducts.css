@@ -17,3 +17,19 @@
 .modals-input input {
   outline: auto gainsboro;
 }
+.add_search {
+  display: flex;
+  justify-content: end;
+  padding: 40px 10px;
+  gap: 40px;
+}
+.add_search input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  color: white;
+}
+.add_search input::placeholder {
+  color: white;
+}

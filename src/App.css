@@ -3,22 +3,79 @@ App.css * {
   padding: 0;
   box-sizing: border-box;
 }
+/* Add transition properties to the necessary elements for smooth animations */
+
+/* Add styles for expanded sidebar */
+.sidebar.expanded {
+  width: 350px;
+}
+
+.sidehead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.bar {
+  cursor: pointer;
+}
+
+/* Add styles for expanded sidebar content */
+.routes.expanded {
+  opacity: 1;
+  padding: 5px 15px;
+  width: auto;
+}
+
+/* Additional styles for animations on route elements */
+.link {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.link:hover {
+  background-color: #555;
+}
+
+/* Add transition properties for route text */
+.route_text {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Add styles for expanded route text */
+.route_text.expanded {
+  opacity: 1;
+  width: auto;
+}
 
 .sidebar {
-  background: #008bf6;
+  background: #29221d;
   color: white;
-  min-height: 100vh;
-  padding-left: 20px;
+  height: 100vh;
+  padding-top: 20px;
+  position: fixed;
+  overflow-y: scroll;
+}
+.sidebar::-webkit-scrollbar {
+  width: 0px;
 }
 a {
   text-decoration: none;
 }
 
 .sidehead {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 10px;
+  justify-content: center;
+}
+.sidehead img {
+  width: 60%;
+  height: auto;
 }
 .search {
   display: flex;
@@ -39,16 +96,42 @@ a {
   display: flex;
   gap: 10px;
   color: white;
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
   border-right: 4px solid transparent;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  padding: 15px 0px;
+  margin: 15px 30px;
+  padding-left: 27px;
+  background-color: #1e1611;
+  border-radius: 30px;
 }
-
+.active {
+  border-right: 4px solid #fe6c00;
+  background: #fe6c00;
+  color: white;
+  margin: 15px 30px;
+  padding: 15px 0px;
+  border-radius: 30px;
+  padding-left: 27px;
+}
+.menu {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  color: white;
+  padding: 15px 10px;
+  border-right: 4px solid transparent;
+  margin: 15px 30px;
+  padding-left: 27px;
+  background: #1e1611;
+  border-radius: 30px;
+  align-items: center;
+}
 .link:hover {
   border-right: 4px solid white;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  background: rgb(255, 255, 255);
-  color: black;
+  background: #fe6c00;
+  color: white;
 }
 .search-icon {
   font-weight: bold;
@@ -56,43 +139,36 @@ a {
 .route_text {
   white-space: nowrap;
   font-size: 15px;
+  padding-top: 4px;
 }
 .main-container {
   display: flex;
 }
-
+body {
+  background: #1e1611;
+}
 main {
   padding: 20px;
   width: 100%;
+  padding-left: 323px;
 }
-.active {
-  border-right: 4px solid white;
-  background: rgb(255, 255, 255);
-  color: black;
+.table {
+  --bs-table-bg: #29221d !important;
+  --bs-table-color: white;
 }
-
 .logo {
   font-size: 2.2rem;
 }
 
 .addcolor {
-  background: rgb(255, 255, 255);
-  color: black;
+  background: #fe6c00;
+  color: white;
 }
 .addcolor:hover {
-  background: rgb(255, 255, 255);
-  color: black;
+  background: #fe6c00;
+  color: white;
 }
 
-.menu {
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
-  color: white;
-  padding: 10px 10px;
-  border-right: 4px solid transparent;
-  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-}
 .menu_items {
   display: flex;
   gap: 10px;
@@ -100,4 +176,39 @@ main {
 .menu_container .link {
   padding-left: 20px;
   border-bottom: white 0.5px solid;
+}
+.content-Badge {
+  background: #29221d !important;
+  color: white !important;
+}
+.css-1m4w3qg {
+  height: 400px;
+  /* width: 100%; */
+  max-width: 100%;
+  margin-top: 50px;
+  background-color: #29221d;
+}
+text {
+  color: white !important;
+  fill: #fff !important;
+}
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  background-color: #29221d !important;
+  margin: 20px 0px;
+}
+.navbar-img {
+  width: 150px;
+}
+.custom-dropdown-toggle::after {
+  display: none;
+  background: transparent !important;
+}
+.custom-dropdown-toggle {
+  background: transparent !important;
+}
+.btn {
+  background-color: #fe6c00 !important;
+}
+.table > :not(caption) > * > * {
+  padding-left: 20px !important;
 }

@@ -1,17 +1,21 @@
 import React from "react";
 import "./Dashboard.css";
 import Badge from "../Pages/DashboardComponents/Badge";
-import GraficoDonut from "../Pages/DashboardComponents/Chart";
-import TableData from "./DashboardComponents/TableData";
+
+import Navbar_Dashboard from "./DashboardComponents/navbar_dasboard";
+import AllProductDetails from "./AllProductsDetails";
+import ChartCountry from "../Pages/DashboardComponents/Chart";
 import LineChart from "./DashboardComponents/LineChart";
 
 const Dashboard = () => {
   return (
     <>
+      <Navbar_Dashboard />
       <Badge />
+      {/* <BoxCharting /> */}
+      <ChartCountry />
       <LineChart />
-      <GraficoDonut />
-      <TableData />
+      <AllProductDetails />
     </>
   );
 };

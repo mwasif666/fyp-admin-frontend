@@ -11,6 +11,8 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import CancelScheduleSendIcon from "@mui/icons-material/CancelScheduleSend";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import "./Badge.css";
 import { Card, Col, Row } from "react-bootstrap";
 
@@ -121,7 +123,7 @@ const Budget = () => {
                 <div className="footer">
                   <Typography className={"difference arrow-up"} variant="body2">
                     <ArrowUpwardIcon />
-                    23.5%
+                    23%
                   </Typography>
                   <Typography className={"caption"} variant="caption">
                     Since last month

@@ -15,6 +15,7 @@ import Login from "./Pages/Login";
 import CreateUser from "./Pages/CreateUser";
 import Orders from "./Pages/Orders";
 import AllProducts from "./Pages/AllProducts";
+import ViewAllProducts from "./Pages/ViewAllProducts";
 
 function App({ login }) {
   const [cart, setCart] = useState({});
@@ -198,45 +199,43 @@ function App({ login }) {
       ) : null}
       <ProductState>
         <Router>
-          {localStorage.getItem("authtoken") ? (
+          <Sidebar>
             <Routes>
-              <Route exact path="/" element={<Login />} />
-              {/* <Route exact path="/" element={<Login login={loginHandler} loggedIn={loggedIn}/>}/>    */}
+              <Route exact path="/" element={<Dashboard />} />
+              <Route
+                exact
+                path="/product/addproduct"
+                element={<AddProduct />}
+              />
+              <Route
+                exact
+                path="/product/allproducts"
+                element={<AllProducts />}
+              />
+              <Route
+                exact
+                path="/product/updateproduct"
+                element={<UpdateProduct />}
+              />
+              <Route
+                exact
+                path="/product/getproduct"
+                element={<ViewProduct />}
+              />
+              <Route
+                exact
+                path="/product/deleteproduct"
+                element={<DeleteProduct />}
+              />
+              <Route exact path="/createuser" element={<CreateUser />} />
+              <Route exact path="/createinvoice" element={<Orders />} />
+              <Route
+                exact
+                path="/ViewAllProducts/:index"
+                element={<ViewAllProducts />}
+              />
             </Routes>
-          ) : (
-            <Sidebar>
-              <Routes>
-                <Route exact path="/" element={<Dashboard />} />
-                <Route
-                  exact
-                  path="/product/addproduct"
-                  element={<AddProduct />}
-                />
-                <Route
-                  exact
-                  path="/product/allproducts"
-                  element={<AllProducts />}
-                />
-                <Route
-                  exact
-                  path="/product/updateproduct"
-                  element={<UpdateProduct />}
-                />
-                <Route
-                  exact
-                  path="/product/getproduct"
-                  element={<ViewProduct />}
-                />
-                <Route
-                  exact
-                  path="/product/deleteproduct"
-                  element={<DeleteProduct />}
-                />
-                <Route exact path="/createuser" element={<CreateUser />} />
-                <Route exact path="/createinvoice" element={<Orders />} />
-              </Routes>
-            </Sidebar>
-          )}
+          </Sidebar>
         </Router>
       </ProductState>
     </>
