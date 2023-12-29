@@ -21,6 +21,11 @@ const routes = [
     icon: <TbHeartRateMonitor />,
   },
   {
+    path: "/emailbox",
+    name: "Email",
+    icon: <TbHeartRateMonitor />,
+  },
+  {
     path: "/createinvoice",
     name: "Order Details",
     icon: <FaFileInvoice />,
@@ -33,11 +38,6 @@ const routes = [
       {
         path: "/product/allproducts",
         name: "All Products",
-        icon: <CiViewList />,
-      },
-      {
-        path: "/product/getproduct",
-        name: "View Product",
         icon: <CiViewList />,
       },
       {

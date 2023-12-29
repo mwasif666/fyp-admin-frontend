@@ -33,3 +33,51 @@
 .add_search input::placeholder {
   color: white;
 }
+.modal-dialog {
+  max-width: fit-content !important;
+}
+.modal-content {
+  background-color: #29221d !important;
+  color: white !important;
+}
+.Table-Edit input {
+  outline: none !important;
+}
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+.Table-Edit > :not(caption) > * > * {
+  padding-left: 0px !important;
+}
+
+.btn-close {
+  --bs-btn-close-bg: none;
+  position: relative;
+}
+.btn-close::before {
+  position: absolute;
+  font-family: "Font Awesome 6 Free"; /* Ensure the Font Awesome font is available */
+  content: "\f057";
+  color: white;
+  border: none;
+  top: 0;
+  left: 0;
+  font-size: 30px;
+}
+.img-div-view-product img {
+  width: 100%;
+}
+
+.img-div-view-product {
+  background-color: #29221d;
+  width: 30%;
+}
+.View-information p {
+  font-size: 22px;
+  font-weight: 700;
+}

@@ -6,16 +6,14 @@ import AddProduct from "./Pages/AddProduct";
 import UpdateProduct from "./Pages/UpdateProduct";
 import ProductState from "./context/product/ProductState";
 import { useState, useEffect } from "react";
-import ViewProduct from "./Pages/ViewProduct";
 import DeleteProduct from "./Pages/DeleteProduct";
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
-// import Modal from "react-bootstrap/Modal";
-import Login from "./Pages/Login";
 import CreateUser from "./Pages/CreateUser";
 import Orders from "./Pages/Orders";
 import AllProducts from "./Pages/AllProducts";
 import ViewAllProducts from "./Pages/ViewAllProducts";
+import LoginPage from "./Pages/LoginPage";
+import App2 from "./App2";
+import Emailbox from "./Pages/Emailbox";
 
 function App({ login }) {
   const [cart, setCart] = useState({});
@@ -195,10 +193,22 @@ function App({ login }) {
             </div>
           </div>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <Router>
+            <Routes>
+              <Route exact path="/LoginPage" element={<LoginPage />} />
+            </Routes>
+          </Router>
         </>
       ) : null}
+
       <ProductState>
         <Router>
+          {/* {!localStorage.getItem("authtoken") ? (
+            <Routes>
+              <Route exact path="/" element={<App2 />} /> */}
+          {/* <Route exact path="/" element={<Login login={loginHandler} loggedIn={loggedIn}/>}/>    */}
+          {/* </Routes>
+          ) : ( */}
           <Sidebar>
             <Routes>
               <Route exact path="/" element={<Dashboard />} />
@@ -219,11 +229,6 @@ function App({ login }) {
               />
               <Route
                 exact
-                path="/product/getproduct"
-                element={<ViewProduct />}
-              />
-              <Route
-                exact
                 path="/product/deleteproduct"
                 element={<DeleteProduct />}
               />
@@ -234,8 +239,10 @@ function App({ login }) {
                 path="/ViewAllProducts/:index"
                 element={<ViewAllProducts />}
               />
+              <Route exact path="/emailbox" element={<Emailbox />} />
             </Routes>
           </Sidebar>
+          {/* )} */}
         </Router>
       </ProductState>
     </>
