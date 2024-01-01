@@ -342,7 +342,7 @@ const AllProductDetails = () => {
                         <FontAwesomeIcon icon={faEllipsisVertical} />
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem onClick={() => deleteProd(item._id)}>
+                        <DropdownItem className="text-lg" onClick={() => deleteProd(item._id)}>
                           Delete
                         </DropdownItem>
                         <DropdownItem
