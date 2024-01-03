@@ -243,16 +243,27 @@ const AllProductDetails = () => {
         }
       );
       const data = await response.json();
+      console.log(data);
       if (data.success) {
-        formData(" ");
         alert(`${data.message}`);
+        // Reset form fields after successful update
+        setProdTitle("");
+        setProdDesc("");
+        setProdPrice("");
+        setProdQty("");
+        setProdColor("");
+        setProdSize("");
+        setProdCategory("");
+        setProductFeatured("");
+        setProdImg1("");
+        setProdImg2("");
       } else {
         alert(`${data.message}`);
       }
     } catch (error) {
       console.error("Error:", error);
       console.log(error);
-      alert("Something went wrong!");
+      alert("Something went wrong in updateing prod form frontend wh!");
     }
   };
 
@@ -271,8 +282,8 @@ const AllProductDetails = () => {
       );
       let res = await response.json();
       if (res.success) {
-        let updateProdList  = product.filter(x =>x._id!== id)
-        setProduct(updateProdList)
+        let updateProdList = product.filter((x) => x._id !== id);
+        setProduct(updateProdList);
         alert(res.message);
       } else {
         alert(res.message);
@@ -342,7 +353,10 @@ const AllProductDetails = () => {
                         <FontAwesomeIcon icon={faEllipsisVertical} />
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem className="text-lg" onClick={() => deleteProd(item._id)}>
+                        <DropdownItem
+                          className="text-lg"
+                          onClick={() => deleteProd(item._id)}
+                        >
                           Delete
                         </DropdownItem>
                         <DropdownItem
