@@ -1,0 +1,8 @@
+.main-login-screen {
+  background: #29221d;
+  color: white;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

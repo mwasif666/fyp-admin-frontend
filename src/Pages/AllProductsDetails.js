@@ -582,7 +582,177 @@ const AllProductDetails = () => {
         <ModalHeader toggle={toggleAddModal}>Add New Product</ModalHeader>
 
         <ModalBody>
-          <div className="container"></div>
+          <form className="">
+            <div className="row">
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="product name" className="form-label">
+                    Product Title
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="productname"
+                    value={prodTitle}
+                    name="prodTitle"
+                    onChange={handChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productcategory" className="form-label">
+                    Product Description
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="productcategory"
+                    value={prodDesc}
+                    name="prodDesc"
+                    onChange={handChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productcompany" className="form-label">
+                    Product Price
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="productcompany"
+                    value={prodPrice}
+                    name="prodPrice"
+                    onChange={handChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productqunatity" className="form-label">
+                    Product Quantity
+                  </label>
+                  <input
+                    type="Number"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="productquantity"
+                    value={prodQty}
+                    name="prodQty"
+                    onChange={handChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productdiscount" className="form-label">
+                    Product Color
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="productdiscount"
+                    value={prodColor}
+                    name="prodColor"
+                    onChange={handChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productExtradiscount" className="form-label">
+                    Product Size
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="productextradiscount"
+                    value={prodSize}
+                    name="prodSize"
+                    onChange={handChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productExtradiscount" className="form-label">
+                    Product Category
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="productextradiscount"
+                    value={prodCategory}
+                    name="prodCategory"
+                    onChange={handChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productExtradiscount" className="form-label">
+                    Product Category
+                  </label>
+                  <select
+                    id="cars"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    value={productFeatured}
+                    name="productFeatured"
+                    onChange={handChange}
+                  >
+                    <option value="null">~Select feature~ </option>
+                    <option value="best-deals">Best Deals</option>
+                    <option value="featured">Featured</option>
+                    <option value="on-sale">On Sale</option>
+                    <option value="top-rated">Top Rated</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="electronic">Electronic</option>
+                    <option value="new-arrivals">New Arrivals</option>
+                    <option value="tv-led">Tv and LED</option>
+                    <option value="laptop-computer">Laptop & Computer</option>
+                    <option value="recommended">Recommended</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productExtradiscount" className="form-label">
+                    Product Image1
+                  </label>
+                  <input
+                    type="file"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="prodImg1"
+                    name="prodImg1"
+                    onChange={(e) => handleFileChange(e, setProdImg1)}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3 flex flex-col">
+                  <label for="productExtradiscount" className="form-label">
+                    Product Image2
+                  </label>
+                  <input
+                    type="file"
+                    className="form-control border-2 border-slate-200 rounded mt-2"
+                    id="prodImg2"
+                    name="prodImg2"
+                    onChange={(e) => handleFileChange(e, setProdImg2)}
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              style={{ background: "red" }}
+              type="submit"
+              className="btn addcolor p-2 text-white rounded mt-2"
+              onClick={updateProd}
+            >
+              Add Product
+            </button>
+          </form>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleAddProduct}>

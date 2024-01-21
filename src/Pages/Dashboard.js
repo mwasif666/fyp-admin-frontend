@@ -1,5 +1,4 @@
 import React from "react";
-import "./Dashboard.css";
 import Badge from "../Pages/DashboardComponents/Badge";
 
 import Navbar_Dashboard from "./DashboardComponents/navbar_dasboard";
