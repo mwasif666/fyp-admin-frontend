@@ -41,7 +41,6 @@ const AllProductDetails = () => {
     if (localStorage.getItem("Products") !== null) {
       let fetchProducts = JSON.parse(localStorage.getItem("Products"));
       setProductsList(fetchProducts);
-      console.log("jgdfkjgldf", productsList);
       let fetchUser = JSON.parse(localStorage.getItem("AuthenticatedUser"));
       setAuthUser(fetchUser);
     } else {
