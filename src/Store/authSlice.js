@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const login = createAsyncThunk("user/login", async (data) => {
+  console.log(data);
   const response = await fetch("http://localhost:5000/api/auth/v1/adminlogin", {
     method: "POST",
     headers: {
@@ -12,17 +13,17 @@ export const login = createAsyncThunk("user/login", async (data) => {
   return res;
 });
 
-export const signUp = createAsyncThunk("user/signup", async (data) => {
-  const response = await fetch("http://localhost:5000/api/auth/v1/adminsignup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json", // Fix the typo here
-    },
-    body: JSON.stringify(data),
-  });
-  let res = await response.json();
-  return res;
-});
+// export const signUp = createAsyncThunk("user/signup", async (data) => {
+//   const response = await fetch("http://localhost:5000/api/auth/v1/adminsignup", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json", // Fix the typo here
+//     },
+//     body: JSON.stringify(data),
+//   });
+//   let res = await response.json();
+//   return res;
+// });
 
 export const authSlice = createSlice({
   name: "auth",
@@ -31,7 +32,7 @@ export const authSlice = createSlice({
     loading: false, // Set to false initially
     message: "",
     error: "",
-    success: "",
+    success: false,
     userDetails: {},
   },
   reducers: {
@@ -60,7 +61,7 @@ export const authSlice = createSlice({
         login.fulfilled,
         (
           state,
-          { payload: { error, message, authToken, success, userDetails } }
+          { payload: { error, message, authToken, success, logedInUser } }
         ) => {
           if (error) {
             state.error = error;
@@ -69,10 +70,13 @@ export const authSlice = createSlice({
             state.success = success;
             state.authToken = authToken;
             state.message = message;
-            state.userDetails = userDetails;
+            state.userDetails = logedInUser;
             state.loading = false;
             localStorage.setItem("auth-token", authToken);
-            localStorage.setItem("user-details", userDetails);
+            localStorage.setItem("user-details", logedInUser);
+          }else{
+            state.message = message;
+            state.success = success;
           }
         }
       )
@@ -82,32 +86,32 @@ export const authSlice = createSlice({
 
       // For SignUp
 
-      .addCase(signUp.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(
-        signUp.fulfilled,
-        (
-          state,
-          { payload: { error, message, authToken, success, userDetails } }
-        ) => {
-          if (error) {
-            state.error = error;
-          }
-          if (success) {
-            state.success = success;
-            state.authToken = authToken;
-            state.message = message;
-            state.userDetails = userDetails;
-            state.loading = false;
-            localStorage.setItem("auth-token", authToken);
-            localStorage.setItem("user-details", userDetails);
-          }
-        }
-      )
-      .addCase(signUp.rejected, (state) => {
-        state.loading = false;
-      });
+      // .addCase(signUp.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(
+      //   signUp.fulfilled,
+      //   (
+      //     state,
+      //     { payload: { error, message, authToken, success, userDetails } }
+      //   ) => {
+      //     if (error) {
+      //       state.error = error;
+      //     }
+      //     if (success) {
+      //       state.success = success;
+      //       state.authToken = authToken;
+      //       state.message = message;
+      //       state.userDetails = userDetails;
+      //       state.loading = false;
+      //       localStorage.setItem("auth-token", authToken);
+      //       localStorage.setItem("user-details", userDetails);
+      //     }
+      //   }
+      // )
+      // .addCase(signUp.rejected, (state) => {
+      //   state.loading = false;
+      // });
   },
 });
 export const { isLoggedIn, logout } = authSlice.actions;

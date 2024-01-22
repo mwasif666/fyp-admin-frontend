@@ -69,6 +69,7 @@ import Orders from "./Pages/Orders";
 import AllProducts from "./Pages/AllProducts";
 import ViewAllProducts from "./Pages/ViewAllProducts";
 import Emailbox from "./Pages/Emailbox";
+import LoginPage from "./Pages/LoginPage";
 
 function App() {
   return (
@@ -99,6 +100,7 @@ function App() {
                 element={<DeleteProduct />}
               />
               <Route exact path="/createuser" element={<CreateUser />} />
+              <Route exact path="/login" element={<LoginPage />} />
               <Route exact path="/createinvoice" element={<Orders />} />
               <Route
                 exact
