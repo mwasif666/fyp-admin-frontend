@@ -57,12 +57,11 @@
 
 // export default App;
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import Sidebar from "./Components/Sidebar";
 import AddProduct from "./Pages/AddProduct";
 import UpdateProduct from "./Pages/UpdateProduct";
-import ProductState from "./context/product/ProductState";
 import DeleteProduct from "./Pages/DeleteProduct";
 import CreateUser from "./Pages/CreateUser";
 import Orders from "./Pages/Orders";
@@ -70,12 +69,15 @@ import AllProducts from "./Pages/AllProducts";
 import ViewAllProducts from "./Pages/ViewAllProducts";
 import Emailbox from "./Pages/Emailbox";
 import LoginPage from "./Pages/LoginPage";
+import { AuthProvider } from "./context/AuthContext";
+
 
 function App() {
+
   return (
     <>
-      <ProductState>
-        <Router>
+      <Router>
+        <AuthProvider>
           <Sidebar>
             <Routes>
               <Route exact path="/" element={<Dashboard />} />
@@ -110,8 +112,9 @@ function App() {
               <Route exact path="/emailbox" element={<Emailbox />} />
             </Routes>
           </Sidebar>
-        </Router>
-      </ProductState>
+         
+        </AuthProvider>
+      </Router>
     </>
   );
 }

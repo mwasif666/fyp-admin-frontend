@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./LoginPage.css"
-import { useDispatch, useSelector } from "react-redux";
-import { isLoggedIn, login } from "../Store/authSlice";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+// import { useDispatch, useSelector } from "react-redux";
+// import { isLoggedIn, login } from "../Store/authSlice";
+
+
 const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // const { authToken } = useSelector((state) => state.auth) || {};
   const navigate = useNavigate();
-  const { authToken } = useSelector((state) => state.auth) || {};
-
-  useEffect(() => {
-    dispatch(isLoggedIn());
-    if(authToken){
-       navigate('/')
-    }
+  const { login, userToken } = useContext(AuthContext);
   
-  }, []);
   const handleChange = (e) => {
     if (e.target.name === "phoneNumber") {
       setPhoneNumber(e.target.value);
@@ -27,24 +24,30 @@ const LoginPage = () => {
   };
   const handleClick = async (e) => {
     e.preventDefault();
-    dispatch(login({ phoneNumber, password }))
-      .then((response) => {
-        if (response.payload && response.payload.success) {
-          alert(response.payload.message);
-          localStorage.setItem("auht-token",response.payload.authToken)
-          localStorage.setItem("user-details", JSON.stringify(response.payload.logedInUser));
-          setPhoneNumber("")
-          setPassword("")
-          navigate('/')
+    login({phoneNumber, password});
+    // dispatch(login({ phoneNumber, password }))
+    //   .then((response) => {
+    //     if (response.payload && response.payload.success) {
+    //       alert(response.payload.message);
+    //       localStorage.setItem("auth-token",response.payload.authToken)
+    //       localStorage.setItem("user-details", JSON.stringify(response.payload.logedInUser));
+    //       setPhoneNumber("")
+    //       setPassword("")
+    //       navigate('/')
            
-        }else{
-          alert(response.payload.message || response.payload.errors[0].msg );
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    //     }else{
+    //       alert(response.payload.message || response.payload.errors[0].msg );
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   };
+  useEffect(()=>{
+    if (userToken) {
+       navigate('/')
+    }
+  })
  
   return (
     <div className="main-login-screen">
