@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./LoginPage.css"
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../Store/authSlice";
+import { isLoggedIn, login } from "../Store/authSlice";
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { authToken } = useSelector((state) => state.auth) || {};
 
+  useEffect(() => {
+    dispatch(isLoggedIn());
+    if(authToken){
+       navigate('/')
+    }
+  
+  }, []);
   const handleChange = (e) => {
     if (e.target.name === "phoneNumber") {
       setPhoneNumber(e.target.value);
@@ -14,27 +25,33 @@ const LoginPage = () => {
       setPassword(e.target.value);
     }
   };
-  const dispatch = useDispatch()
-  const auth = useSelector((state) => state.auth) || {};
-  const { success, message, loading, error } = auth;
   const handleClick = async (e) => {
     e.preventDefault();
-    dispatch(login({phoneNumber , password}))
+    dispatch(login({ phoneNumber, password }))
+      .then((response) => {
+        if (response.payload && response.payload.success) {
+          alert(response.payload.message);
+          localStorage.setItem("auht-token",response.payload.authToken)
+          localStorage.setItem("user-details", JSON.stringify(response.payload.logedInUser));
+          setPhoneNumber("")
+          setPassword("")
+          navigate('/')
+           
+        }else{
+          alert(response.payload.message || response.payload.errors[0].msg );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
-  React.useEffect(() => {
-    if (success) {
-      window.alert(message);
-    }
-    if (error) {
-      window.alert(error);
-    }
-  }, [success, error]);
+ 
   return (
     <div className="main-login-screen">
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden login-screen">
         <div className="w-full p-6 m-auto rounded-md shadow-md lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-[#101118] underline">
-            Sign in
+           
           </h1>
           <form className="mt-6">
             <div className="mb-2">
