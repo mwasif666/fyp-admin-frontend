@@ -514,7 +514,7 @@ const AllProductDetails = () => {
               <div className="col-md-6">
                 <div className="mb-3 flex flex-col">
                   <label for="productExtradiscount" className="form-label">
-                    Product Category
+                    Product Featured
                   </label>
                   <select
                     id="cars"
@@ -549,7 +549,7 @@ const AllProductDetails = () => {
                     name="prodImg1"
                     onChange={(e) => handleFileChange(e, setProdImg1)}
                   />
-                </div>
+                </div>l
               </div>
               <div className="col-md-6">
                 <div className="mb-3 flex flex-col">
