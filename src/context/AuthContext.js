@@ -7,7 +7,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigation = useNavigate();
-
+  const [product, setProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   //   const signup = async (name, email, phone, password) => {
   //     try {
   //       const response = await fetch("http://localhost:3000/api/auth/resturantsignup", {
@@ -31,6 +32,29 @@ export const AuthProvider = ({ children }) => {
   //     }
   //   };
 
+  const getProduct = async () => {
+    setIsLoading(true);
+    let response = await fetch(`http://localhost:5000/api/prod/v1/getproduct`, {
+      method: "GET",
+      headers: {
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6IjY1ODMzZWRiZjU4MzE3ZGMzYzg5MTQyMCIsImlhdCI6MTcwMzEwMDE1OH0.xqQ7ykJAGEwW_-DOuTps0GCpK4nU4Hra40d-g4TGGR8", // this token comes from you cookies or localstorage
+      },
+    });
+    let res = await response.json();
+    if (res.success) {
+      setProduct(res.product);
+      setIsLoading(false);
+    } else {
+      alert(res.status);
+    }
+  };
+  useEffect(() => {
+    setIsLoading(true);
+    getProduct();
+    setIsLoading(false);
+  }, []);
+
   const login = async (userData) => {
     console.log(userData);
     try {
@@ -45,7 +69,7 @@ export const AuthProvider = ({ children }) => {
       const data = await res.json();
       if (data.success && data.authToken) {
         setUserToken(data.authToken);
-        setUser(data.logedInUser)
+        setUser(data.logedInUser);
         localStorage.setItem("auth-token", data.authToken);
         localStorage.setItem("user-details", JSON.stringify(data.logedInUser));
         navigation("/");
@@ -69,7 +93,7 @@ export const AuthProvider = ({ children }) => {
       let userTokenValue = await localStorage.getItem("auth-token");
       let userValue = await localStorage.getItem("user-details");
       setUserToken(userTokenValue);
-      setUser(userValue)
+      setUser(userValue);
       setLoading(false);
     } catch (e) {
       console.log(`some error occurred ${e}`);
@@ -86,7 +110,19 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ login, userToken, logout, isLoggedIn , user }}>
+    <AuthContext.Provider
+      value={{
+        login,
+        userToken,
+        logout,
+        isLoggedIn,
+        user,
+        setIsLoading,
+        isLoading,
+        product,
+        setProduct,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

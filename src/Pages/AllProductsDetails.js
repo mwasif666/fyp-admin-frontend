@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Table,
   Modal,
@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../context/AuthContext";
 
 const AllProductDetails = () => {
   const [productsList, setProductsList] = useState([]);
@@ -159,7 +160,7 @@ const AllProductDetails = () => {
   };
 
   // this is get product code
-  const [product, setProduct] = useState([]);
+  // const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [prodTitle, setProdTitle] = useState(" ");
   const [prodDesc, setProdDesc] = useState(" ");
@@ -172,6 +173,8 @@ const AllProductDetails = () => {
   const [prodCategory, setProdCategory] = useState(" ");
   const [productFeatured, setProductFeatured] = useState(" ");
   const [id, setId] = useState("");
+  const { product, setProduct, isLoading, serIsLoading } =
+    useContext(AuthContext);
 
   const getProduct = async () => {
     setLoading(true);
@@ -314,8 +317,10 @@ const AllProductDetails = () => {
       <Table>
         <thead>
           <tr>
-            <th>Images</th>
+            <th>Image 1</th>
+            <th>Image 2</th>
             <th>Title</th>
+            <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Color</th>
@@ -333,46 +338,31 @@ const AllProductDetails = () => {
               return (
                 <tr key={index}>
                   <td>
-                    <img src={item.productImage} />
+                    <img src={`http://localhost:5000/${item?.prodImg1}`} />
+                  </td>
+                  <td>
+                    <img src={`http://localhost:5000/${item?.prodImg2}`} />
                   </td>
                   <td>{item.prodTitle}</td>
+                  <td className="productdescription">
+                    {item.prodDesc.substring(0, 100)}
+                  </td>
                   <td>{item.prodPrice}</td>
                   <td>{item.prodQty}</td>
                   <td>{item.prodColor}</td>
                   <td>{item.prodCategory}</td>
                   <td>
-                    <Dropdown
-                      isOpen={dropdownOpen && selectedItemIndex === index}
-                      toggle={() => toggleDropdown(index)}
-                    >
-                      <DropdownToggle
-                        caret={false}
-                        className="custom-dropdown-toggle"
-                      >
-                        <FontAwesomeIcon icon={faEllipsisVertical} />
-                      </DropdownToggle>
-                      <DropdownMenu>
-                        <DropdownItem
-                          className="text-lg"
-                          onClick={() => deleteProd(item._id)}
-                        >
-                          Delete
-                        </DropdownItem>
-                        <DropdownItem
-                          onClick={() => openEditModal(index, item._id, item)}
-                        >
-                          Edit
-                        </DropdownItem>
-                        <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
-                          {/* <DropdownItem onClick={() => openViewModal(item)}>
-                            View
-                          </DropdownItem> */}
-                          <DropdownItem>
-                            <Link to={`/ViewAllProducts/${index}`}>View</Link>
-                          </DropdownItem>
-                        </Dropdown>
-                      </DropdownMenu>
-                    </Dropdown>
+                    <i
+                      onClick={() => deleteProd(item._id)}
+                      class="fa-solid fa-trash"
+                    ></i>
+                    <i
+                      onClick={() => openEditModal(index, item._id, item)}
+                      class="fa-solid fa-pen-to-square"
+                    ></i>
+                    <Link to={`/ViewAllProducts/${item._id}`}>
+                      <i class="fa-solid fa-eye"></i>
+                    </Link>
                   </td>
                 </tr>
               );
@@ -380,23 +370,6 @@ const AllProductDetails = () => {
           )}
         </tbody>
       </Table>
-      <Modal isOpen={viewModal} toggle={() => setViewModal(!viewModal)}>
-        <ModalHeader toggle={() => setViewModal(!viewModal)}>
-          Product Details
-        </ModalHeader>
-        <ModalBody>
-          <div>
-            {/* Ensure the 'selectedProduct' is available */}
-            <img src={selectedProduct?.productImage} />
-            <h4>{selectedProduct?.productName}</h4>
-            <p>Price: {selectedProduct?.productPrice}</p>
-            {/* Display other product information as needed */}
-          </div>
-        </ModalBody>
-        <Button color="secondary" onClick={() => setViewModal(!viewModal)}>
-          Close
-        </Button>
-      </Modal>
       <Modal
         isOpen={editModal}
         toggle={toggleEditModal}
@@ -514,7 +487,7 @@ const AllProductDetails = () => {
               <div className="col-md-6">
                 <div className="mb-3 flex flex-col">
                   <label for="productExtradiscount" className="form-label">
-                    Product Featured
+                    Product Category
                   </label>
                   <select
                     id="cars"
@@ -549,7 +522,7 @@ const AllProductDetails = () => {
                     name="prodImg1"
                     onChange={(e) => handleFileChange(e, setProdImg1)}
                   />
-                </div>l
+                </div>
               </div>
               <div className="col-md-6">
                 <div className="mb-3 flex flex-col">

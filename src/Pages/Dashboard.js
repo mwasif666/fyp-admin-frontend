@@ -6,12 +6,14 @@ import AllProductDetails from "./AllProductsDetails";
 import ChartCountry from "../Pages/DashboardComponents/Chart";
 import LineChart from "./DashboardComponents/LineChart";
 import Login from "./LoginPage";
+import ApplicationsTable from "./PrivateRoutes";
 
 const Dashboard = () => {
   return (
     <>
       <Navbar_Dashboard />
       <Badge />
+      <ApplicationsTable />
       {/* <BoxCharting /> */}
       <ChartCountry />
       <LineChart />

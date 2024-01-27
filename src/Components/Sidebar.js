@@ -45,16 +45,6 @@ const routes = [
         name: "Add Product",
         icon: <AiOutlinePlusCircle />,
       },
-      {
-        path: "/product/updateproduct",
-        name: "Update Product",
-        icon: <RxUpdate />,
-      },
-      {
-        path: "/product/deleteproduct",
-        name: "Delete Product",
-        icon: <MdDelete />,
-      },
     ],
   },
   {

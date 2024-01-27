@@ -81,3 +81,23 @@
   font-size: 22px;
   font-weight: 700;
 }
+.productdescription {
+  width: 280px !important;
+}
+.fa-trash {
+  color: tomato;
+  padding-right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.fa-pen-to-square {
+  color: #3160d8;
+  padding-right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.fa-eye {
+  color: white;
+  padding-right: 15px;
+  font-size: 20px;
+}

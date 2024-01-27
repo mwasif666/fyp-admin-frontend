@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import "./AllProducts.css";
+import { AuthContext } from "../context/AuthContext";
+import { useEffect } from "react";
 
-const ViewAllProduct = () => {
-  const { index } = useParams();
-  const [filteredProducts, setFilteredProducts] = useState([]);
+const ViewAllProducts = () => {
+  const [singleProd, setSingleProd] = React.useState();
+  const [loading, setLoading] = React.useState(true);
+
+  let { id } = useParams();
+  const { product } = useContext(AuthContext);
 
   useEffect(() => {
-    // Fetch the product data from localStorage or an API and set it to the state
-    const storedProducts = JSON.parse(localStorage.getItem("Products")) || [];
-    setFilteredProducts(storedProducts);
+    setLoading(true);
+    const sss = product.find((x) => x._id === id);
+    setSingleProd(sss);
+    setLoading(false);
   }, []);
 
-  const product = filteredProducts[index];
-
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
-      {product ? (
-        <div className="View-information">
-          <h2 className="text-center py-5">Product Information</h2>
-          <div className="img-div-view-product">
-            <img src={product.productImage} alt="" />
-          </div>
-          <p className="py-2">Name: {product.productName}</p>
-          <p>Price: {product.productPrice}</p>
+      {singleProd && (
+        <div>
+          <h2>{singleProd.prodTitle}</h2>
+          <img src={`http://localhost:5000/${singleProd?.prodImg1}`} alt="" />
+          <p>{singleProd.prodDesc}</p>
+          {/* Display other product details */}
         </div>
-      ) : (
-        <p>Product not found</p>
       )}
     </div>
   );
 };
 
-export default ViewAllProduct;
+export default ViewAllProducts;
