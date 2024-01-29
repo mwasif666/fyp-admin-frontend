@@ -218,6 +218,44 @@ const AllProductDetails = () => {
   const handleFileChange = (e, setImage) => {
     setImage(e.target.files[0]);
   };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("prodTitle", prodTitle);
+    formData.append("prodDesc", prodDesc);
+    formData.append("prodPrice", prodPrice);
+    formData.append("prodQty", prodQty);
+    formData.append("prodColor", prodColor);
+    formData.append("prodSize", prodSize);
+    formData.append("prodCategory", prodCategory);
+    formData.append("productFeatured", productFeatured);
+    formData.append("prodImg1", prodImg1);
+    formData.append("prodImg2", prodImg2);
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/prod/v1/addproduct`, {
+        method: "POST",
+        headers: {
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6IjY1ODMzZWRiZjU4MzE3ZGMzYzg5MTQyMCIsImlhdCI6MTcwMzEwMDE1OH0.xqQ7ykJAGEwW_-DOuTps0GCpK4nU4Hra40d-g4TGGR8",
+        },
+        body: formData,
+      });
+
+      const data = await res.json();
+      console.log(data);
+      if (data.success) {
+        alert("Add successfully!");
+      } else {
+        alert("Something went wrong!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      console.log(error);
+      alert("Something went wrong!");
+    }
+  };
   const updateProd = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -673,7 +711,7 @@ const AllProductDetails = () => {
                     name="productFeatured"
                     onChange={handChange}
                   >
-                    <option value="null">~Select feature~ </option>
+                    <option value="null">Select feature</option>
                     <option value="best-deals">Best Deals</option>
                     <option value="featured">Featured</option>
                     <option value="on-sale">On Sale</option>
@@ -716,18 +754,18 @@ const AllProductDetails = () => {
                 </div>
               </div>
             </div>
-            <button
+            {/* <button
               style={{ background: "red" }}
               type="submit"
               className="btn addcolor p-2 text-white rounded mt-2"
-              onClick={updateProd}
+              onClick={handleClick}
             >
               Add Product
-            </button>
+            </button> */}
           </form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleAddProduct}>
+          <Button color="primary" onClick={handleClick}>
             Save
           </Button>
           <Button color="secondary" onClick={toggleAddModal}>
