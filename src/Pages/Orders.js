@@ -6,19 +6,22 @@ const ApplicationsTable = () => {
   const { userToken } = useContext(AuthContext);
   const [orderDetails , setOrderDetails] = useState([])
   const [loading , setLoading] = useState(true)
-  const fetchProd = async() =>{
+  const fetchProd = async () => {
     try {
-      setLoading(true)
-      const res = await fetch(`http://localhost:5000/api/order/v1/getorder?orderStatus=Pending`,{
-        "auth-token":userToken
-      })
-      const data = res.json()
-      setOrderDetails(data)
-      setLoading(false)
+      setLoading(true);
+      const res = await fetch(`http://localhost:5000/api/order/v1/getorder?orderStatus=Pending`, {
+        headers: {
+          "auth-token": userToken,
+        },
+      });
+      const data = await res.json();
+      setOrderDetails(data);
+      setLoading(false);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
+  
   useEffect(()=>{
     fetchProd()
   },[])
@@ -47,6 +50,7 @@ const ApplicationsTable = () => {
             <tbody>
               <tr>
                 <td>
+                  {orderDetails && orderDetails.map((item , index)=>{})}
                   <img
                     alt="..."
                     src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
