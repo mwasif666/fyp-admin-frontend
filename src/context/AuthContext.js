@@ -56,7 +56,6 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (userData) => {
-    console.log(userData);
     try {
       const res = await fetch("http://localhost:5000/api/auth/v1/adminlogin", {
         method: "POST",
@@ -87,17 +86,13 @@ export const AuthProvider = ({ children }) => {
     navigation("/login");
   };
 
-  const isLoggedIn = async () => {
-    try {
-      setLoading(true);
-      let userTokenValue = await localStorage.getItem("auth-token");
-      let userValue = await localStorage.getItem("user-details");
-      setUserToken(userTokenValue);
-      setUser(userValue);
-      setLoading(false);
-    } catch (e) {
-      console.log(`some error occurred ${e}`);
-    }
+  const isLoggedIn = () => {
+    setLoading(true);
+    let authToken = localStorage.getItem("auth-token");
+    let user = JSON.parse(localStorage.getItem("user-details"));
+    setUserToken(authToken);
+    setUser(user);
+    setLoading(false);
   };
 
   useEffect(() => {

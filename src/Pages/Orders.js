@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 
 const ApplicationsTable = () => {
+  const { userToken } = useContext(AuthContext);
+  const [orderDetails , setOrderDetails] = useState([])
+  const [loading , setLoading] = useState(true)
+  const fetchProd = async() =>{
+    try {
+      setLoading(true)
+      const res = await fetch(`http://localhost:5000/api/order/v1/getorder?orderStatus=Pending`,{
+        "auth-token":userToken
+      })
+      const data = res.json()
+      setOrderDetails(data)
+      setLoading(false)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  useEffect(()=>{
+    fetchProd()
+  },[])
+
+  if(loading){
+    return <div>Loading...</div>
+  }
   return (
     <>
       <div className="card shadow border-0 mb-7">

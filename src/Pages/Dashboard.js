@@ -1,19 +1,19 @@
 import React from "react";
 import Badge from "../Pages/DashboardComponents/Badge";
-
 import Navbar_Dashboard from "./DashboardComponents/navbar_dasboard";
 import AllProductDetails from "./AllProductsDetails";
 import ChartCountry from "../Pages/DashboardComponents/Chart";
 import LineChart from "./DashboardComponents/LineChart";
-import Login from "./LoginPage";
-import ApplicationsTable from "./PrivateRoutes";
+
+// import ApplicationsTable from "./PrivateRoutes";
 
 const Dashboard = () => {
+
   return (
     <>
       <Navbar_Dashboard />
       <Badge />
-      <ApplicationsTable />
+      {/* <ApplicationsTable /> */}
       {/* <BoxCharting /> */}
       <ChartCountry />
       <LineChart />

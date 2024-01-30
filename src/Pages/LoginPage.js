@@ -43,11 +43,11 @@ const LoginPage = () => {
     //     console.error(error);
     //   });
   };
-  useEffect(()=>{
-    if (userToken) {
-       navigate('/')
-    }
-  })
+  // useEffect(()=>{
+  //   if (userToken) {
+  //      navigate('/')
+  //   }
+  // })
  
   return (
     <div className="main-login-screen">
