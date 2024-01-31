@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const ApplicationsTable = () => {
+  const { userToken } = useContext(AuthContext);
+  const [orderDetails, setOrderDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const fetchProd = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `http://localhost:5000/api/order/v1/getorder?orderStatus=Pending`,
+        {
+          headers: {
+            "auth-token": userToken,
+          },
+        }
+      );
+      const data = await res.json();
+      setOrderDetails(data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProd();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <div className="card shadow border-0 mb-7">
@@ -23,7 +53,9 @@ const ApplicationsTable = () => {
             </thead>
             <tbody>
               <tr>
-                <td className="d-flex align-items-center">
+                <td>
+                  {orderDetails && orderDetails.map((item, index) => {})}
+
                   <img
                     alt="..."
                     src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
