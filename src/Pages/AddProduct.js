@@ -194,7 +194,7 @@ const AddProduct = () => {
                 <option value="featured">Featured</option>
                 <option value="on-sale">On Sale</option>
                 <option value="top-rated">Top Rated</option>
-                <option value="entertainment">Entertainment</option>
+                <option value="entertainment">Accesseries</option>
                 <option value="electronic">Electronic</option>
                 <option value="new-arrivals">New Arrivals</option>
                 <option value="tv-led">Tv and LED</option>
@@ -231,7 +231,7 @@ const AddProduct = () => {
               />
             </div>
           </div>
-        </div>    
+        </div>
         <button
           style={{ background: "red" }}
           type="submit"
