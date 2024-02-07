@@ -11,12 +11,14 @@ const ApplicationsTable = () => {
       setLoading(true);
       const res = await fetch(`http://localhost:5000/api/order/v1/getorder?orderStatus=Pending`, {
         headers: {
-          "auth-token": userToken,
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YjYyOGU2NWFiOWJkNDYzN2Q4MjRjNCIsImZpcnN0TmFtZSI6Ildhc2lmIiwiZW1haWwiOiJ3YXNpNjY2MjU0MjZAZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOiIwMzQ2MTEyMDk3OCIsImlhdCI6MTcwNjY4MzU4N30.j78Jqlo2QOg8w8-rAw5bFcFieVqj_1S4SmK4uH7GyJE",
         },
       });
       const data = await res.json();
-      setOrderDetails(data);
+      console.log("fdgdfgfdgdf",data);
+      setOrderDetails(data.orders);
       setLoading(false);
+      console.log(orderDetails);
     } catch (error) {
       console.error(error);
     }
@@ -48,41 +50,45 @@ const ApplicationsTable = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  {orderDetails && orderDetails.map((item , index)=>{})}
-                  <img
-                    alt="..."
-                    src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                    className="avatar avatar-sm rounded-circle me-2"
-                  />
-                  <p>Robert Fox</p>
-                </td>
-                <td>Feb 15, 2021</td>
-                <td className="d-flex align-middle">
-                  <img
-                    alt="..."
-                    src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-                    className="avatar avatar-xs rounded-circle me-2"
-                  />
-                  <p>Dribbble</p>
-                </td>
-                <td>$3.500</td>
-                <td>
-                  <span className="badge badge-lg badge-dot">
-                    <i className="bg-success"></i>Scheduled
-                  </span>
-                </td>
-                <td className="text-end">
-                  <p className="btn btn-sm btn-neutral">View</p>
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-square btn-neutral text-danger-hover"
-                  >
-                    <i className="bi bi-trash"></i>
-                  </button>
-                </td>
-              </tr>
+                  {orderDetails && orderDetails.map((item , index)=>{
+                    return (
+                      <tr>
+                      <td>
+                        <img
+                          alt="..."
+                          src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                          className="avatar avatar-sm rounded-circle me-2"
+                        />
+                        <p>{}</p>
+                      </td>
+                      <td>{item.orderNo}</td>
+                      <td className="d-flex align-middle">
+                        <img
+                          alt="..."
+                          src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
+                          className="avatar avatar-xs rounded-circle me-2"
+                        />
+                        <p></p>
+                      </td>
+                      <td>$3.500</td>
+                      <td>
+                        <span className="badge badge-lg badge-dot">
+                          <i className="bg-success"></i>Scheduled
+                        </span>
+                      </td>
+                      <td className="text-end">
+                        <p className="btn btn-sm btn-neutral">View</p>
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-square btn-neutral text-danger-hover"
+                        >
+                          <i className="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    )
+                  })}
+            
               {/* More table rows can be added here */}
             </tbody>
           </table>
