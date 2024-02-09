@@ -82,7 +82,8 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUserToken(null);
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("auth-token");
+    localStorage.removeItem("user-details");
     navigation("/login");
   };
 
@@ -97,7 +98,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     isLoggedIn();
-  }, []); // No need to include userToken as a dependency
+  }, [userToken]); // No need to include userToken as a dependency
 
   if (loading) {
     // You can show a loading spinner or placeholder while userToken is being fetched

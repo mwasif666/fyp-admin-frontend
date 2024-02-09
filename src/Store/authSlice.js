@@ -48,7 +48,6 @@ export const authSlice = createSlice({
       .addCase(
         login.fulfilled,
         (state, { payload: { error, message, authToken, success, logedInUser } }) => {
-          console.log("Login Fulfilled Payload:", { error, message, authToken, success, logedInUser });
           if (error) {
             state.error = error;
           } else if (success) {

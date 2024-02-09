@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import "./LoginPage.css"
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { useDispatch } from "react-redux";
+import { login } from "../Store/authSlice";
 // import { useDispatch, useSelector } from "react-redux";
 // import { isLoggedIn, login } from "../Store/authSlice";
 
@@ -12,7 +14,7 @@ const LoginPage = () => {
   // const dispatch = useDispatch();
   // const { authToken } = useSelector((state) => state.auth) || {};
   const navigate = useNavigate();
-  const { login, userToken } = useContext(AuthContext);
+  // const { login } = useContext(AuthContext);
   
   const handleChange = (e) => {
     if (e.target.name === "phoneNumber") {
@@ -22,32 +24,24 @@ const LoginPage = () => {
       setPassword(e.target.value);
     }
   };
+  const dispatch = useDispatch()
   const handleClick = async (e) => {
     e.preventDefault();
-    login({phoneNumber, password});
-    // dispatch(login({ phoneNumber, password }))
-    //   .then((response) => {
-    //     if (response.payload && response.payload.success) {
-    //       alert(response.payload.message);
-    //       localStorage.setItem("auth-token",response.payload.authToken)
-    //       localStorage.setItem("user-details", JSON.stringify(response.payload.logedInUser));
-    //       setPhoneNumber("")
-    //       setPassword("")
-    //       navigate('/')
-           
-    //     }else{
-    //       alert(response.payload.message || response.payload.errors[0].msg );
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    try {
+      const response = await dispatch(login({ phoneNumber, password }));
+        console.log(response);
+      if (response.payload && response.payload.success) {
+        alert(response.payload.message);
+        setPhoneNumber("");
+        setPassword("");
+        navigate('/');
+      } else {
+        alert(response.payload.message || response.payload.errors[0].msg);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
-  // useEffect(()=>{
-  //   if (userToken) {
-  //      navigate('/')
-  //   }
-  // })
  
   return (
     <div className="main-login-screen">

@@ -9,6 +9,7 @@ const ApplicationsTable = () => {
   const fetchProd = async () => {
     try {
       setLoading(true);
+<<<<<<< HEAD
       const res = await fetch(
         `http://localhost:5000/api/order/v1/getorder?orderStatus=Pending`,
         {
@@ -19,8 +20,18 @@ const ApplicationsTable = () => {
       );
       const data = await res.json();
       console.log("fdgdfgfdgdf", data);
+=======
+      const res = await fetch(`http://localhost:5000/api/order/v1/getorder?orderStatus=Pending`, {
+        headers: {
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YjYyOGU2NWFiOWJkNDYzN2Q4MjRjNCIsImZpcnN0TmFtZSI6Ildhc2lmIiwiZW1haWwiOiJ3YXNpNjY2MjU0MjZAZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOiIwMzQ2MTEyMDk3OCIsImlhdCI6MTcwNjY4MzU4N30.j78Jqlo2QOg8w8-rAw5bFcFieVqj_1S4SmK4uH7GyJE",
+        },
+      });
+      const data = await res.json();
+      console.log("fdgdfgfdgdf",data);
+>>>>>>> 7c134a1781f5b9896f43bc2a15a39f6158731636
       setOrderDetails(data.orders);
       setLoading(false);
+      console.log(orderDetails);
     } catch (error) {
       console.error(error);
     }
@@ -52,10 +63,16 @@ const ApplicationsTable = () => {
               </tr>
             </thead>
             <tbody>
+<<<<<<< HEAD
               {orderDetails &&
                 orderDetails.map((item, index) => {
                   return (
                     <tr>
+=======
+                  {orderDetails && orderDetails.map((item , index)=>{
+                    return (
+                      <tr>
+>>>>>>> 7c134a1781f5b9896f43bc2a15a39f6158731636
                       <td>
                         <img
                           alt="..."
@@ -71,7 +88,11 @@ const ApplicationsTable = () => {
                           src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
                           className="avatar avatar-xs rounded-circle me-2"
                         />
+<<<<<<< HEAD
                         <p>{item.orderInfo}</p>
+=======
+                        <p></p>
+>>>>>>> 7c134a1781f5b9896f43bc2a15a39f6158731636
                       </td>
                       <td>$3.500</td>
                       <td>
@@ -89,9 +110,15 @@ const ApplicationsTable = () => {
                         </button>
                       </td>
                     </tr>
+<<<<<<< HEAD
                   );
                 })}
 
+=======
+                    )
+                  })}
+            
+>>>>>>> 7c134a1781f5b9896f43bc2a15a39f6158731636
               {/* More table rows can be added here */}
             </tbody>
           </table>

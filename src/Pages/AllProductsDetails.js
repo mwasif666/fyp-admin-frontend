@@ -378,10 +378,10 @@ const AllProductDetails = () => {
               return (
                 <tr key={index}>
                   <td>
-                    <img src={`http://localhost:5000/${item?.prodImg1}`} />
+                    <img src={item?.prodImg1} alt={item.prodTitle}/>
                   </td>
                   <td>
-                    <img src={`http://localhost:5000/${item?.prodImg2}`} />
+                    <img src={item?.prodImg2} alt={item.prodTitle}/>
                   </td>
                   <td>{item.prodTitle}</td>
                   <td className="productdescription">
