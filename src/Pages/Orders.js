@@ -44,11 +44,19 @@ const ApplicationsTable = () => {
           <table className="table table-nowrap">
             <thead className="thead-light">
               <tr>
-                <th scope="col">Name</th>
+                <th scope="col">Order No.</th>
+                <th scope="col">Image 1</th>
+                <th scope="col">Image 2</th>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Color</th>
+                <th scope="col">C. Name</th>
+                <th scope="col">C. Phone</th>
+                <th scope="col">City</th>
+                <th scope="col">S. Address</th>
                 <th scope="col">Date</th>
-                <th scope="col">Company</th>
-                <th scope="col">Offer</th>
-                <th scope="col">Meeting</th>
+                <th scope="col">Status</th>
                 <th></th>
               </tr>
             </thead>
@@ -57,29 +65,32 @@ const ApplicationsTable = () => {
                 orderDetails.map((item, index) => {
                   return (
                     <tr>
+                      <td>{item.orderNo}</td>
                       <td>
                         <img
                           alt="..."
                           src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
                           className="avatar avatar-sm rounded-circle me-2"
                         />
-                        <p>{}</p>
                       </td>
-                      <td>{item.orderNo}</td>
-                      <td className="d-flex align-middle">
+                      <td>
                         <img
                           alt="..."
-                          src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-                          className="avatar avatar-xs rounded-circle me-2"
+                          src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                          className="avatar avatar-sm rounded-circle me-2"
                         />
-                        <p></p>
                       </td>
-                      <td>$3.500</td>
-                      <td>
-                        <span className="badge badge-lg badge-dot">
-                          <i className="bg-success"></i>Scheduled
-                        </span>
-                      </td>
+                      <td>{item.prodTitle}</td>
+                      <td>{item.totalPrice}</td>
+                      <td>{item.totalQty}</td>
+                      <td>{item.prodColor}</td>
+                      <td>{item.cusName}</td>
+                      <td>{item.phoneNo}</td>
+                      <td>{item.city}</td>
+                      <td>{item.shippingAddress}</td>
+                      <td>{item.Date}</td>
+                      <td>{item.orderStatus}</td>
+
                       <td className="text-end">
                         <p className="btn btn-sm btn-neutral">View</p>
                         <button
